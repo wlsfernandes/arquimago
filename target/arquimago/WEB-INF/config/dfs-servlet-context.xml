@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+      	http://www.springframework.org/schema/aop
+      	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+    
+    <!-- Habilita o AspectJ do Spring AOP -->
+	<aop:aspectj-autoproxy />
+    
+	<!-- Pacote base para leitura das anotações do Spring -->
+	<context:component-scan base-package="br.com.furnas.controle" />
+	
+	<!-- Ativa as anotações do AspectJ -->
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />
+    
+	<!-- Arquivos de properties de configuração do sistema -->
+	<!--context:property-placeholder location="	classpath:application-config.properties,
+			classpath:ssl-config.properties" ignore-unresolvable="true" /-->
+	
+	<!-- Configures Handler Interceptors -->	
+	<mvc:interceptors>
+		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" >
+			<property name="paramName" value="language" />
+  		</bean>
+	</mvc:interceptors>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+		
+	<!-- Configuração do message source do sistema -->
+	<bean id="mensagens" class="br.com.furnas.util.MessageResourceUTF" lazy-init="true" />
+	
+	<!-- Configuração do menssage source do sistema -->
+
+	 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="mensagens" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+    <!-- Importação da configuração dos beans das diferentes camadas do sistema -->
+	<import resource="dfs/apresentacao.xml"/>
+	<import resource="dfs/aplicacao.xml"/>
+	<import resource="dfs/dominio.xml"/>
+	<import resource="dfs/infraestrutura.xml"/>
+	<import resource="dfs/seguranca.xml"/>
+	
+	<!-- As configurações do RequestMappingHandlerAdapter devem ser declaradas
+	  antes da tag mvc:annotation-driven. Dessa forma, essa instância
+	  configurada é a que será utilizada no application context do mvc. 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="cacheSeconds" value="0" />
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- View resolver para os JSPs que utilizam JSTL -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="exposeContextBeansAsAttributes" value="true" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+	
+	<bean id="logInterceptador" class="br.com.furnas.log.LogInterceptador"/>
+	
+	<!-- Ativa as anotações do MVC -->
+	<mvc:annotation-driven validator="validator">
+    <mvc:message-converters>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+        
+    </mvc:message-converters>
+</mvc:annotation-driven>
+	
+	<!-- Mapeamento das requisições para arquivos estáticos -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>10000000</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>10000000</value>
+		</property>
+	</bean>	
+ </beans>

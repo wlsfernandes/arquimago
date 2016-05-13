@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"  
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+                           xsi:schemaLocation="http://java.sun.com/xml/ns/persistence  
+                                               http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">  
+      
+    <persistence-unit name="contexto" transaction-type="RESOURCE_LOCAL">  
+	
+		<class>br.com.furnas.dominio.modelo.Modelo</class>
+		<class>br.com.furnas.dominio.modelo.Edital</class>
+		<class>br.com.furnas.dominio.modelo.EnvioAprovacao</class>
+		<class>br.com.furnas.dominio.modelo.Parecer</class>
+		<class>br.com.furnas.dominio.modelo.Aprovador</class>
+		<class>br.com.furnas.dominio.modelo.EnvioAprovacaoAprovadores</class>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>  
+		<properties>  
+            <property name="hibernate.show_sql" value="false" />  
+            <property name="hibernate.format_sql" value="false" />  
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.ehcache.SingletonEhCacheProvider" />  
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />  
+            <property name="hibernate.cache.use_second_level_cache" value="true" />  
+			<property name="hibernate.cache.use_query_cache" value="true" />  
+            <property name="hibernate.cache.configuration_file_resource_path" value="/ehcache.xml" />  
+        </properties>  
+    </persistence-unit>  
+</persistence>  

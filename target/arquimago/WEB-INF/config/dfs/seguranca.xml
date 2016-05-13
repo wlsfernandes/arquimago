@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			         http://www.springframework.org/schema/security
+			         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http disable-url-rewriting="true" use-expressions="true">
+		<intercept-url pattern="/entrada*" access="permitAll" />
+		<intercept-url pattern="/interno*" access="permitAll" />
+		<intercept-url pattern="/diretorio/*" access="permitAll" />
+		<intercept-url pattern="/interno/diretorio/listaArmariosPastas/**" access="permitAll" />
+		
+		<form-login login-page="/entrada" default-target-url="/entrada/menu" authentication-failure-url="/entrada?error" />
+
+		<logout logout-success-url="/" />
+		
+		<!-- <remember-me /> -->
+	</http>
+
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+
+	<beans:bean id="customAuthenticationProvider" class="br.com.furnas.autenticacao.CustomAuthenticationProvider">
+		<beans:property name="fachadaDeAutenticacao" ref="fachadaDeAutenticacao" />
+	</beans:bean>
+</beans:beans>

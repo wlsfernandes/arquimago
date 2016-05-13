@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<bean id="fachadaDeAutenticacao" class="br.com.furnas.aplicacao.fachada.impl.FachadaDeAutenticacao">
+		<property name="servicoDeAutenticacao" ref="servicoDeAutenticacao" />
+	</bean>
+	
+	<bean id="fachadaDeGED" class="br.com.furnas.aplicacao.fachada.impl.FachadaDeGED">
+		<property name="servicoDeGED" ref="servicoDeGED" />
+	</bean>
+	
+	<bean id="fachadaDeArmarios" class="br.com.furnas.aplicacao.fachada.impl.FachadaDeArmarios">
+		<property name="servicoDeArmarios" ref="servicoDeArmarios" />
+	</bean>
+	
+	<bean id="fachadaDeArquivos" class="br.com.furnas.aplicacao.fachada.impl.FachadaDeArquivos">
+		<property name="servicoDeArquivos" ref="servicoDeArquivos" />
+	</bean>
+	
+	<bean id="fachadaDePastas" class="br.com.furnas.aplicacao.fachada.impl.FachadaDePastas">
+		<property name="servicoDePastas" ref="servicoDePastas" />
+	</bean>
+
+	<bean id="fachadaDeGerenciadorDeArquivos"  class="br.com.furnas.aplicacao.fachada.impl.FachadaDeGerenciadorDeArquivos">
+		<property name="servicoDeGerenciadorDeArquivos" ref="servicoDeGerenciadorDeArquivos" />
+	</bean>
+
+	<bean id="servicoDeGED" class="br.com.furnas.aplicacao.servicos.impl.ServicoDeGED">
+	    <property name="construtorDeGED" ref="construtorDeGED" />
+	</bean>
+ 
+ 	<bean id="servicoDeAutenticacao" class="br.com.furnas.aplicacao.servicos.impl.ServicoDeAutenticacao">
+	    <property name="construtorDeAutenticacao" ref="construtorDeAutenticacao" />
+	</bean>
+	
+	<bean id="servicoDeGerenciadorDeArquivos" class="br.com.furnas.aplicacao.servicos.impl.ServicoDeGerenciadorDeArquivos">
+		<property name="construtorDeGerenciadorDeArquivos" ref="construtorDeGerenciadorDeArquivos" />
+	</bean>
+	
+	<bean id="servicoDePastas" class="br.com.furnas.aplicacao.servicos.impl.ServicoDePastas">
+	    <property name="construtorDePastas" ref="construtorDePastas" />
+	</bean>
+ 
+ 	<bean id="servicoDeArquivos" class="br.com.furnas.aplicacao.servicos.impl.ServicoDeArquivos">
+	    <property name="construtorDeArquivos" ref="construtorDeArquivos" />
+	</bean>
+ 
+ 	<bean id="servicoDeArmarios" class="br.com.furnas.aplicacao.servicos.impl.ServicoDeArmarios">
+	    <property name="construtorDeArmarios" ref="construtorDeArmarios" />
+	</bean>
+ 
+</beans>

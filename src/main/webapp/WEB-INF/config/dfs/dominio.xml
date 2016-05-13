@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<bean id="validacaoUtil" class="br.com.furnas.dominio.ValidacaoUtil" />
+	
+	<!--  INÍCIO CONSTRUTORES -->
+
+	<bean id="construtorDeGerenciadorDeArquivos" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDeGerenciadorDeArquivos" >
+		<property name="repositorioGerenciadorDeArquivos" ref="repositorioDeGerenciadorDeArquivos" />
+	</bean>	
+				
+	<bean id="construtorDeAutenticacao" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDeAutenticacao" >
+		<property name="repositorioAutenticacao" ref="repositorioDeAutenticacao" />
+	</bean>
+	
+	<bean id="construtorDeGED" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDeGED" >
+		<property name="repositorioArmarios" ref="repositorioDeArmarios" />
+		<property name="repositorioArquivos" ref="repositorioDeArquivos" />
+		<property name="repositorioPastas" ref="repositorioDePastas" />
+	</bean>				
+	
+	<bean id="construtorDeArmarios" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDeArmarios" >
+		<property name="repositorioArmarios" ref="repositorioDeArmarios" />
+	</bean>		
+	
+	<bean id="construtorDeArquivos" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDeArquivos" >
+		<property name="repositorioArquivos" ref="repositorioDeArquivos" />
+	</bean>	
+		
+	<bean id="construtorDePastas" class="br.com.furnas.dominio.modelo.construtores.impl.ConstrutorDePastas" >
+		<property name="repositorioPastas" ref="repositorioDePastas" />
+	</bean>		
+	
+	<!--  FIM CONSTRUTORES -->
+</beans>

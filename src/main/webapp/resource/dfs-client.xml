@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DfsClientConfig defaultModuleName="core" registryProviderModuleName="core">
+
+
+<!--     <ModuleInfo name="core" protocol="http" host="corp1253" port="8090" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="search" protocol="http" host="corp1253" port="8090" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="bpm" protocol="http" host="corp1253" port="8090" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="collaboration" protocol="http" host="corp1253" port="8090" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="ci" protocol="http" host="corp1253" port="8090" contextRoot="emc-dfs/services"/>
+ -->
+
+
+     <ModuleInfo name="core" protocol="http" host="10.1.1.193" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="search" protocol="http" host="10.1.1.193" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="bpm" protocol="http" host="10.1.1.193" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="collaboration" protocol="http" host="10.1.1.193" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="ci" protocol="http" host="10.1.1.193" port="8080" contextRoot="emc-dfs/services"/>
+    
+    <!--
+     <ModuleInfo name="core" protocol="http" host="10.1.160.45" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="search" protocol="http" host="10.1.160.45" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="bpm" protocol="http" host="10.1.160.45" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="collaboration" protocol="http" host="10.1.160.45" port="8080" contextRoot="emc-dfs/services"/>
+
+    <ModuleInfo name="ci" protocol="http" host="10.1.160.45" port="8080" contextRoot="emc-dfs/services"/> -->
+
+</DfsClientConfig> 
